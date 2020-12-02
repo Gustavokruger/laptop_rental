@@ -1,4 +1,5 @@
 
+using customer_rental.Persistence.Repositories;
 using laptop_rental.Persistence.Repositories;
 using laptop_rental.Services;
 using laptoprental.Persistence.Contexts;
@@ -26,9 +27,13 @@ namespace laptop_rental
         {
 
             services.AddMvc();
-            services.AddDbContext<DataContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(opt => { opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")); }, ServiceLifetime.Transient);
             services.AddScoped<ILaptopRepository, LaptopRepository>();
             services.AddScoped<ILaptopService, LaptopService>();
+            services.AddScoped<IRentRepository, RentRepository>();
+            services.AddScoped<IRentService, RentService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
 
 

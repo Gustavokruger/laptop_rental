@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using laptop_rental.Domain.Base;
 
 namespace laptop_rental.Domain.Models
 {
-    public class Rent
+    public class Rent : BaseModel
     {
-        [Key]
-        public int Id { get; set; }
         public int orderId { get; set; }
 
         [Required(ErrorMessage = "Obligatory Field")]
@@ -16,8 +15,7 @@ namespace laptop_rental.Domain.Models
 
         [Required(ErrorMessage = "Obligatory Field")]
         public string rentExpirationDate { get; set; }
-
-        [Required(ErrorMessage = "Obligatory Field")]
         public string status { get; set; }
+        public decimal fullPrice { get; set; }
     }
 }

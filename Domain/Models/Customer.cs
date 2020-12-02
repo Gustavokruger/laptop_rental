@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using laptop_rental.Domain.Models;
 using System.ComponentModel.DataAnnotations;
+using laptop_rental.Domain.Base;
 
 namespace laptop_rental.Domain.Models
 {
-    public class Customer
+    public class Customer : BaseModel
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required(ErrorMessage = "Obligatory Field")]
         public string email { get; set; }

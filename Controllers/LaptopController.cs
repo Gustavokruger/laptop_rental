@@ -36,7 +36,7 @@ namespace laptop_rental.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task Post([FromBody] Laptop laptop)
+        public async Task create([FromBody] Laptop laptop)
         {
             if (ModelState.IsValid)
             {

@@ -10,7 +10,7 @@ namespace laptop_rental.Persistence.Repositories
         Task<ActionResult<IEnumerable<Laptop>>> listAsync();
         Task addAsync(Laptop laptop);
         Task<ActionResult<Laptop>> findByIdAsync(int id);
-        void update(Laptop laptop);
+        Task update(Laptop laptop);
         void remove(Laptop laptop);
 
     }

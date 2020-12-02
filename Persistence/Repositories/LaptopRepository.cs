@@ -30,7 +30,7 @@ namespace laptop_rental.Persistence.Repositories
         {
             return await _context.Laptops.FindAsync(id);
         }
-        public async void update(Laptop laptop)
+        public async Task update(Laptop laptop)
         {
             _context.Update(laptop);
             await _context.SaveChangesAsync();

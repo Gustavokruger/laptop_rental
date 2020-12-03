@@ -20,10 +20,8 @@ namespace laptop_rental.Domain.Models
 
         [Required(ErrorMessage = "Obligatory Field")]
         public Boolean isLegal { get; set; }
-
         public string cpf { get; set; }
-
         public string cnpj { get; set; }
-        public virtual ICollection<Order> orders { get; set; }
+        public virtual ICollection<Rent> rent { get; set; }
     }
 }

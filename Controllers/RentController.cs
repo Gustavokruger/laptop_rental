@@ -30,14 +30,14 @@ namespace laptop_rental.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<IEnumerable<Rent>>> getAllAsync()
+        public async Task<ActionResult<IEnumerable<Rent>>> findAllAsync()
         {
 
             return await _rentService.listAsync();
         }
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<ActionResult<Rent>> getById(int id)
+        public async Task<ActionResult<Rent>> findById(int id)
         {
 
             return await _rentService.findByIdAsync(id);

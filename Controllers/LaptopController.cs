@@ -22,16 +22,25 @@ namespace laptop_rental.Controllers
         [HttpGet]
         [Route("")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Laptop>>> getAllAsync()
+        public async Task<ActionResult<IEnumerable<Laptop>>> findAllAsync()
         {
             return await _laptopService.listAsync();
         }
         [HttpGet]
         [Route("{id:int}")]
         [Authorize]
-        public async Task<ActionResult<Laptop>> getById(int id)
+        public async Task<ActionResult<Laptop>> findById(int id)
         {
             return await _laptopService.findByIdAsync(id);
+
+        }
+
+        [HttpGet]
+        [Route("{brand:String}")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Laptop>>> findByBrand(string brand)
+        {
+            return await _laptopService.findByBrand(brand);
 
         }
 

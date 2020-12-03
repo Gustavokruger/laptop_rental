@@ -52,14 +52,14 @@ namespace laptop_rental.Controllers
         [HttpGet]
         [Route("")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Customer>>> getAllAsync()
+        public async Task<ActionResult<IEnumerable<Customer>>> findAllAsync()
         {
             return await _customerService.listAsync();
         }
         [HttpGet]
         [Route("{id:int}")]
         [Authorize]
-        public async Task<ActionResult<Customer>> getById(int id)
+        public async Task<ActionResult<Customer>> findById(int id)
         {
             return await _customerService.findByIdAsync(id);
 
@@ -67,7 +67,6 @@ namespace laptop_rental.Controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize]
         public async Task<ActionResult<dynamic>> create([FromBody] Customer customer)
         {
             if (ModelState.IsValid)

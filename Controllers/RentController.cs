@@ -8,7 +8,10 @@ using System.Net;
 using System.Threading.Tasks;
 
 using laptop_rental.Domain.Models;
+using laptop_rental.Dtos;
 using laptop_rental.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 
 namespace laptop_rental.Controllers
@@ -43,7 +46,8 @@ namespace laptop_rental.Controllers
 
         [HttpGet]
         [Route("simulate")]
-        public Rent simulate([FromBody] Rent rent)
+        [Authorize]
+        public ActionResult<RentSimulationDto> simulate([FromBody] RentSimulationDto rent)
         {
             if (ModelState.IsValid)
             {
@@ -63,12 +67,16 @@ namespace laptop_rental.Controllers
                     rent.fullPrice += (item.laptop.dailyPrice * item.quantity * daysAmount);
                 });
 
+
+                return rent;
+
             }
-            return rent;
+            return this.StatusCode(500);
         }
 
         [HttpPost]
         [Route("create")]
+        [Authorize]
         public async Task<ActionResult> create([FromBody] Rent rent)
         {
             if (ModelState.IsValid)
@@ -98,7 +106,7 @@ namespace laptop_rental.Controllers
 
         [HttpPut]
         [Route("refund/{id:int}")]
-        public async Task refund(int id)
+        public async Task<ActionResult> refund(int id)
         {
             if (ModelState.IsValid)
             {
@@ -115,8 +123,11 @@ namespace laptop_rental.Controllers
                     rent.status = "devolvido";
 
                     await _rentService.update(rent);
+
                 }
+                return this.StatusCode(200);
             }
+            return this.StatusCode(500);
 
         }
 

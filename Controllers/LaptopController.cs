@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
 using laptop_rental.Services;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,12 +21,14 @@ namespace laptop_rental.Controllers
 
         [HttpGet]
         [Route("")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Laptop>>> getAllAsync()
         {
             return await _laptopService.listAsync();
         }
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize]
         public async Task<ActionResult<Laptop>> getById(int id)
         {
             return await _laptopService.findByIdAsync(id);
@@ -35,6 +37,7 @@ namespace laptop_rental.Controllers
 
         [HttpPost]
         [Route("create")]
+        [Authorize]
         public async Task create([FromBody] Laptop laptop)
         {
             if (ModelState.IsValid)
@@ -45,6 +48,7 @@ namespace laptop_rental.Controllers
 
         [HttpPut]
         [Route("update")]
+        [Authorize]
         public async Task update([FromBody] Laptop laptop)
         {
             if (ModelState.IsValid)
@@ -55,6 +59,7 @@ namespace laptop_rental.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
+        [Authorize]
         public async Task delete(int id)
         {
             if (ModelState.IsValid)

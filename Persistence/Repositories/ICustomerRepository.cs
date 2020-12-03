@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
+using laptop_rental.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace laptop_rental.Persistence.Repositories
@@ -12,5 +13,6 @@ namespace laptop_rental.Persistence.Repositories
         Task<Customer> findByIdAsync(int id);
         Task update(Customer customer);
         Task remove(int id);
+        Task<Customer> login(CustomerLoginDto login);
     }
 }

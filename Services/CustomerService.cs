@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
+using laptop_rental.Dtos;
 using laptop_rental.Persistence.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,10 @@ namespace laptop_rental.Services
         {
             _customerRepository = customerRepository;
 
+        }
+        public async Task<Customer> login(CustomerLoginDto login)
+        {
+            return await _customerRepository.login(login);
         }
         public async Task<ActionResult<IEnumerable<Customer>>> listAsync()
         {

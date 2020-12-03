@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
+using laptop_rental.Dtos;
 using laptop_rental.Persistence.Repositories;
 using laptoprental.Persistence.Contexts;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +17,19 @@ namespace customer_rental.Persistence.Repositories
         {
 
         }
+
+        public async Task<Customer> login(CustomerLoginDto login)
+        {
+            return await Task.FromResult(_context.Customers
+            .FirstOrDefault(customer =>
+                customer.email == login.email && customer.password == login.password));
+        }
         public async Task<ActionResult<IEnumerable<Customer>>> listAsync()
         {
             return await Task.FromResult(_context.Customers.ToList());
         }
         public async Task addAsync(Customer customer)
         {
-            Console.WriteLine(customer);
             await _context.Customers.AddAsync(customer);
             await _context.SaveChangesAsync();
         }

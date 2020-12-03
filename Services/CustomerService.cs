@@ -30,13 +30,13 @@ namespace laptop_rental.Services
             await _customerRepository.addAsync(customer);
         }
 
-        public void update(Customer customer)
+        public async Task update(Customer customer)
         {
-            _customerRepository.update(customer);
+            await _customerRepository.update(customer);
         }
-        public void remove(Customer customer)
+        public async Task remove(int id)
         {
-            _customerRepository.remove(customer);
+            await _customerRepository.remove(id);
 
         }
 

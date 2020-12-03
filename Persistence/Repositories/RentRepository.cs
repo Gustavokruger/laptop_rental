@@ -36,13 +36,14 @@ namespace laptop_rental.Persistence.Repositories
             .Include(rent => rent.items)
             .FirstOrDefaultAsync(rent => rent.Id == id);
         }
-        public async void update(Rent rent)
+        public async Task update(Rent rent)
         {
             _context.Update(rent);
             await _context.SaveChangesAsync();
         }
-        public async void remove(Rent rent)
+        public async Task remove(int id)
         {
+            var rent = await _context.Rents.FindAsync(id);
             _context.Rents.Remove(rent);
             await _context.SaveChangesAsync();
 

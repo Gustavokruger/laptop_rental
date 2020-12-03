@@ -11,7 +11,7 @@ namespace laptop_rental.Services
         Task<ActionResult<IEnumerable<Rent>>> listAsync();
         Task<ActionResult<Rent>> findByIdAsync(int id);
         Task addAsync(Rent rent);
-        void update(Rent rent);
-        void remove(Rent rent);
+        Task update(Rent rent);
+        Task remove(int id);
     }
 }

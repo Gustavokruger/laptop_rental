@@ -12,7 +12,7 @@ namespace laptop_rental.Services
         Task<ActionResult<Laptop>> findByIdAsync(int id);
         Task addAsync(Laptop laptop);
         Task update(Laptop laptop);
-        void remove(Laptop laptop);
+        Task remove(int id);
 
     }
 }

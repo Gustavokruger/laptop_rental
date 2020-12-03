@@ -29,13 +29,13 @@ namespace laptop_rental.Services
             await _rentRepository.addAsync(rent);
         }
 
-        public void update(Rent rent)
+        public async Task update(Rent rent)
         {
-            _rentRepository.update(rent);
+            await _rentRepository.update(rent);
         }
-        public void remove(Rent rent)
+        public async Task remove(int id)
         {
-            _rentRepository.remove(rent);
+            await _rentRepository.remove(id);
 
         }
     }

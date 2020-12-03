@@ -40,5 +40,25 @@ namespace laptop_rental.Controllers
                 await _customerService.addAsync(customer);
             }
         }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task update([FromBody] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                await _customerService.update(customer);
+            }
+        }
+
+        [HttpDelete]
+        [Route("delete/{id:int}")]
+        public async Task delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                await _customerService.remove(id);
+            }
+        }
     }
 }

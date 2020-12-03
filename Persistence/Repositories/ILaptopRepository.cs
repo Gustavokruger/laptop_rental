@@ -11,7 +11,7 @@ namespace laptop_rental.Persistence.Repositories
         Task addAsync(Laptop laptop);
         Task<ActionResult<Laptop>> findByIdAsync(int id);
         Task update(Laptop laptop);
-        void remove(Laptop laptop);
+        Task remove(int id);
 
     }
 }

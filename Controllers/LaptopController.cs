@@ -23,7 +23,6 @@ namespace laptop_rental.Controllers
         [Route("")]
         public async Task<ActionResult<IEnumerable<Laptop>>> getAllAsync()
         {
-            // return await context.Laptops.Include(laptop => laptop.category).ToListAsync();
             return await _laptopService.listAsync();
         }
         [HttpGet]
@@ -41,6 +40,26 @@ namespace laptop_rental.Controllers
             if (ModelState.IsValid)
             {
                 await _laptopService.addAsync(laptop);
+            }
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task update([FromBody] Laptop laptop)
+        {
+            if (ModelState.IsValid)
+            {
+                await _laptopService.update(laptop);
+            }
+        }
+
+        [HttpDelete]
+        [Route("delete/{id:int}")]
+        public async Task delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                await _laptopService.remove(id);
             }
         }
 

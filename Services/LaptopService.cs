@@ -35,9 +35,9 @@ namespace laptop_rental.Services
         {
             await _laptopRepository.update(laptop);
         }
-        public void remove(Laptop laptop)
+        public async Task remove(int id)
         {
-            _laptopRepository.remove(laptop);
+            await _laptopRepository.remove(id);
 
         }
 

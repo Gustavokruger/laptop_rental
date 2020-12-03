@@ -1,16 +1,15 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+
 using laptop_rental.Domain.Models;
 using laptop_rental.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace laptop_rental.Controllers
 {
@@ -70,7 +69,7 @@ namespace laptop_rental.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task create([FromBody] Rent rent)
+        public async Task<ActionResult> create([FromBody] Rent rent)
         {
             if (ModelState.IsValid)
             {
@@ -78,14 +77,23 @@ namespace laptop_rental.Controllers
                 foreach (var item in rent.items)
                 {
                     var laptop = (await _laptopService.findByIdAsync(item.laptopId)).Value;
-                    laptop.stockAmount -= 1;
-                    await _laptopService.update(laptop);
+                    if (laptop.stockAmount >= item.quantity)
+                    {
+                        laptop.stockAmount -= 1;
+                        await _laptopService.update(laptop);
+                    }
+                    else
+                    {
+                        return this.StatusCode(500);
+                    }
+
                 }
-
                 rent.status = "efetuado";
-
                 await _rentService.addAsync(rent);
+
+                return this.StatusCode(200);
             }
+            return this.StatusCode(500);
         }
 
         [HttpPut]
@@ -106,10 +114,30 @@ namespace laptop_rental.Controllers
 
                     rent.status = "devolvido";
 
-                    _rentService.update(rent);
+                    await _rentService.update(rent);
                 }
             }
 
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task update([FromBody] Rent rent)
+        {
+            if (ModelState.IsValid)
+            {
+                await _rentService.update(rent);
+            }
+        }
+
+        [HttpDelete]
+        [Route("delete/{id:int}")]
+        public async Task delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                await _rentService.remove(id);
+            }
         }
 
 

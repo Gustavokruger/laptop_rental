@@ -30,13 +30,14 @@ namespace customer_rental.Persistence.Repositories
         {
             return await _context.Customers.FindAsync(id);
         }
-        public async void update(Customer customer)
+        public async Task update(Customer customer)
         {
             _context.Update(customer);
             await _context.SaveChangesAsync();
         }
-        public async void remove(Customer customer)
+        public async Task remove(int id)
         {
+            var customer = await _context.Customers.FindAsync(id);
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
 

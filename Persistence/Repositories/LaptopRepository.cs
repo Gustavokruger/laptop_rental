@@ -35,8 +35,9 @@ namespace laptop_rental.Persistence.Repositories
             _context.Update(laptop);
             await _context.SaveChangesAsync();
         }
-        public async void remove(Laptop laptop)
+        public async Task remove(int id)
         {
+            var laptop = await _context.Laptops.FindAsync(id);
             _context.Laptops.Remove(laptop);
             await _context.SaveChangesAsync();
 

@@ -25,7 +25,7 @@ namespace laptop_rental.Domain.Models
         [Range(1, int.MaxValue, ErrorMessage = "Price must be bigger than 0")]
         public decimal dailyLateFee { get; set; }
 
-        public virtual ICollection<OrderItem> items { get; set; }
+        public virtual ICollection<RentItem> items { get; set; }
 
 
     }

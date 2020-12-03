@@ -35,6 +35,9 @@ namespace laptop_rental
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
 
+            services.AddControllersWithViews()
+            .AddNewtonsoftJson(opt =>
+            opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
         }

@@ -1,10 +1,12 @@
+
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
 using laptoprental.Persistence.Contexts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace laptop_rental.Persistence.Repositories
 {
     public class RentRepository : BaseRepository, IRentRepository
@@ -16,7 +18,9 @@ namespace laptop_rental.Persistence.Repositories
         public async Task<ActionResult<IEnumerable<Rent>>> listAsync()
         {
             return await Task.FromResult(_context.Rents
-            .Include(rent => rent.order)
+            .Include(rent => rent.customer)
+            .Include(rent => rent.items)
+            .ThenInclude(item => item.laptop)
             .ToList());
         }
         public async Task addAsync(Rent rent)
@@ -28,7 +32,8 @@ namespace laptop_rental.Persistence.Repositories
         public async Task<ActionResult<Rent>> findByIdAsync(int id)
         {
             return await _context.Rents
-            .Include(rent => rent.order)
+            .Include(rent => rent.customer)
+            .Include(rent => rent.items)
             .FirstOrDefaultAsync(rent => rent.Id == id);
         }
         public async void update(Rent rent)

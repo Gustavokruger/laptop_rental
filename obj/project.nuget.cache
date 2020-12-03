@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "x1mQCtM4eDtpAia3d6tnqKheTbmevNrj2QHknQ200yGxxHY8Kf0GepoCIZfUl4mzceBi1zTFfOn0ba3iSKM9eQ==",
+  "dgSpecHash": "+TgMhtZ+qHMulg7Q0unjKF6jEeVqiVXDJ/LGAP3KKI+GkBVAvNAqC0IVuO6NN1y3w77onQNPhwyTwNvZnCwccQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\gu_so\\Documents\\laptop-rental\\laptop-rental.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\gu_so\\.nuget\\packages\\entityframework6.npgsql\\6.4.1\\entityframework6.npgsql.6.4.1.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\linqkit.entityframework\\1.1.21\\linqkit.entityframework.1.1.21.nupkg.sha512",
+    "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.0.0\\microsoft.aspnetcore.jsonpatch.3.0.0.nupkg.sha512",
+    "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.0.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",
@@ -31,6 +33,8 @@
     "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
+    "C:\\Users\\gu_so\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\gu_so\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.0\\npgsql.entityframeworkcore.postgresql.5.0.0.nupkg.sha512",
     "C:\\Users\\gu_so\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql.design\\1.1.1\\npgsql.entityframeworkcore.postgresql.design.1.1.1.nupkg.sha512",

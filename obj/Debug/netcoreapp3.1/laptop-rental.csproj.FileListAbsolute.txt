@@ -55,3 +55,7 @@ C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\LinqKit.EntityFramework.dll
+C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\gu_so\Documents\laptop-rental\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

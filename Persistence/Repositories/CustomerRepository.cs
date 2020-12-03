@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
 using laptop_rental.Persistence.Repositories;
@@ -17,7 +18,7 @@ namespace customer_rental.Persistence.Repositories
         }
         public async Task<ActionResult<IEnumerable<Customer>>> listAsync()
         {
-            return await _context.Customers.ToListAsync();
+            return await Task.FromResult(_context.Customers.ToList());
         }
         public async Task addAsync(Customer customer)
         {

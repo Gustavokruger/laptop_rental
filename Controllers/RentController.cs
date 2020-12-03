@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using laptop_rental.Domain.Models;
 using laptop_rental.Services;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,7 +57,7 @@ namespace laptop_rental.Controllers
                         .ParseExact(
                             rent.rentDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowWhiteSpaces))).Days;
 
-                rent.order.items
+                rent.items
                 .ToList()
                 .ForEach(item =>
                 {
@@ -72,10 +75,9 @@ namespace laptop_rental.Controllers
             if (ModelState.IsValid)
             {
 
-
-                foreach (var item in rent.order.items)
+                foreach (var item in rent.items)
                 {
-                    var laptop = (await _laptopService.findByIdAsync(item.laptop.Id)).Value;
+                    var laptop = (await _laptopService.findByIdAsync(item.laptopId)).Value;
                     laptop.stockAmount -= 1;
                     await _laptopService.update(laptop);
                 }
@@ -86,26 +88,28 @@ namespace laptop_rental.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("refund/{id:int}")]
         public async Task refund(int id)
         {
             if (ModelState.IsValid)
             {
                 var rent = (await _rentService.findByIdAsync(id)).Value;
-                rent.order.items
-                .ToList()
-                .ForEach(async item =>
+                if (rent.status != "devolvido")
                 {
-                    var laptop = (await _laptopService.findByIdAsync(item.laptop.Id)).Value;
-                    laptop.stockAmount += 1;
-                    _laptopService.update(laptop);
+                    foreach (var item in rent.items)
+                    {
+                        var laptop = (await _laptopService.findByIdAsync(item.laptopId)).Value;
+                        laptop.stockAmount += 1;
+                        await _laptopService.update(laptop);
+                    }
 
-                });
+                    rent.status = "devolvido";
 
-                rent.status = "devolvido";
-                _rentService.update(rent);
+                    _rentService.update(rent);
+                }
             }
+
         }
 
 

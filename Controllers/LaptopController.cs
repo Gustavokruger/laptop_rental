@@ -36,7 +36,7 @@ namespace laptop_rental.Controllers
         }
 
         [HttpGet]
-        [Route("{brand:String}")]
+        [Route("{brand}")]
         [Authorize]
         public async Task<ActionResult<IEnumerable<Laptop>>> findByBrand(string brand)
         {

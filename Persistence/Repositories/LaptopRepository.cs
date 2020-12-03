@@ -30,6 +30,13 @@ namespace laptop_rental.Persistence.Repositories
         {
             return await _context.Laptops.FindAsync(id);
         }
+
+        public async Task<ActionResult<IEnumerable<Laptop>>> findByBrand(string brand)
+        {
+            return await Task.FromResult(_context.Laptops
+            .Where(laptop => laptop.brand.ToLower() == brand.ToLower())
+            .ToList());
+        }
         public async Task update(Laptop laptop)
         {
             _context.Update(laptop);

@@ -26,6 +26,11 @@ namespace laptop_rental.Services
             return await _laptopRepository.findByIdAsync(id);
         }
 
+        public async Task<ActionResult<IEnumerable<Laptop>>> findByBrand(string brand)
+        {
+            return await _laptopRepository.findByBrand(brand);
+        }
+
         public async Task addAsync(Laptop laptop)
         {
             await _laptopRepository.addAsync(laptop);

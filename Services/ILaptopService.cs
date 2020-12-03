@@ -10,6 +10,7 @@ namespace laptop_rental.Services
     {
         Task<ActionResult<IEnumerable<Laptop>>> listAsync();
         Task<ActionResult<Laptop>> findByIdAsync(int id);
+        Task<ActionResult<IEnumerable<Laptop>>> findByBrand(string brand);
         Task addAsync(Laptop laptop);
         Task update(Laptop laptop);
         Task remove(int id);

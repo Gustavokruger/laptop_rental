@@ -66,11 +66,16 @@ namespace laptop_rental.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _rentService.create(rent);
+                if (await _rentService.create(rent) != null)
+                {
+                    return this.StatusCode(200);
+                }
+                return this.StatusCode(500);
 
-                return this.StatusCode(200);
+
             }
             return this.StatusCode(500);
+
         }
 
         [HttpPut]

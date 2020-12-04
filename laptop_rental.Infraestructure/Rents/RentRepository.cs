@@ -35,7 +35,8 @@ namespace laptop_rental.Infraestructure.Rents
             return await _context.Rents
             .Include(rent => rent.Customer)
             .Include(rent => rent.Items)
-            .FirstOrDefaultAsync(rent => rent.Id == id);
+            .Where(rent => rent.Id == id)
+            .FirstOrDefaultAsync();
         }
         public async Task update(Rent rent)
         {

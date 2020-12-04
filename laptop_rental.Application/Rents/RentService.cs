@@ -47,9 +47,9 @@ namespace laptop_rental.Application.Rents.Services
             return null;
         }
 
-        public async Task create(RentInput rent)
+        public async Task<ActionResult<RentOutput>> create(RentInput rent)
         {
-            await _createRentService.create(rent);
+            return await _createRentService.create(rent);
         }
 
         public async Task update(RentInput rent)

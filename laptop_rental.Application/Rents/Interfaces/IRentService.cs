@@ -11,7 +11,7 @@ namespace laptop_rental.Application.Rents.Services.Interfaces
     {
         ActionResult<List<RentOutput>> list();
         Task<ActionResult<RentOutput>> findByIdAsync(int id);
-        Task create(RentInput rent);
+        Task<ActionResult<RentOutput>> create(RentInput rent);
         Task update(RentInput rent);
         Task remove(int id);
         SimulateRent simulate(SimulateRent rent);

@@ -7163,6 +7163,7 @@
       "Microsoft.EntityFrameworkCore.inMemory >= 5.0.0",
       "NpgSql.EntityFrameworkCore.PostgreSQL.Design >= 1.1.1",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.0",
+      "System.ComponentModel.Annotations >= 5.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.8.0"
     ]
   },
@@ -7236,6 +7237,10 @@
             "version": "[1.1.1, )"
           },
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
+          "System.ComponentModel.Annotations": {
             "target": "Package",
             "version": "[5.0.0, )"
           },

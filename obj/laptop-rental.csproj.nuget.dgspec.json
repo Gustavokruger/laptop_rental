@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[6.8.0, )"

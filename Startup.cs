@@ -1,9 +1,16 @@
 
 using System.Text;
-using customer_rental.Persistence.Repositories;
-using laptop_rental.Persistence.Repositories;
-using laptop_rental.Services;
-using laptoprental.Persistence.Contexts;
+using laptop_rental.Application.Customers.Services;
+using laptop_rental.Application.Customers.Services.Interfaces;
+using laptop_rental.Application.Laptops.Services;
+using laptop_rental.Application.Laptops.Services.Interfaces;
+using laptop_rental.Application.Rents.Services;
+using laptop_rental.Application.Rents.Services.Interfaces;
+using laptop_rental.Domain;
+using laptop_rental.Infraestructure.Contexts;
+using laptop_rental.Infraestructure.Customers;
+using laptop_rental.Infraestructure.Laptops;
+using laptop_rental.Infraestructure.Rents;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -53,7 +60,7 @@ namespace laptop_rental
             services.AddScoped<IRentService, RentService>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IGenerateTokenService, GenerateTokenService>();
             services.AddMvc();
 
             services.AddControllersWithViews()
@@ -95,5 +102,7 @@ namespace laptop_rental
                 endpoints.MapControllers();
             });
         }
+
     }
 }
+

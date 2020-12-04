@@ -4,24 +4,24 @@ using laptop_rental.Domain.Rents;
 
 namespace laptop_rental.Domain.Customers.Dtos
 {
-    public class CustomerOutput : ICustomer
+    public class CustomerOutput
     {
         public string Email { get; set; }
-        public string Password { get; set; }
         public string FullName { get; set; }
         public Boolean IsLegal { get; set; }
         public string Cpf { get; set; }
         public string Cnpj { get; set; }
-        public virtual ICollection<IRent> Rents { get; set; }
-        public CustomerOutput(ICustomer customer)
+        public CustomerOutput(Customer customer)
         {
             Email = customer.Email;
-            Password = customer.Password;
             FullName = customer.FullName;
             IsLegal = customer.IsLegal;
             Cpf = customer.Cpf;
             Cnpj = customer.Cnpj;
-            Rents = customer.Rents;
+
+        }
+        public CustomerOutput()
+        {
 
         }
     }

@@ -5,17 +5,17 @@ using laptop_rental.Domain.RentItems;
 
 namespace laptop_rental.Domain.Rents.Dtos
 {
-    public class RentOutput : IRent
+    public class RentOutput
     {
         public string RentDate { get; set; }
         public string rentExpirationDate { get; set; }
         public string Status { get; set; }
         public decimal FullPrice { get; set; }
         public int CustomerId { get; set; }
-        public ICustomer Customer { get; set; }
-        public virtual ICollection<IRentItem> Items { get; set; }
+        public Customer Customer { get; set; }
+        public virtual ICollection<RentItem> Items { get; set; }
 
-        public RentOutput(IRent rent)
+        public RentOutput(Rent rent)
         {
             RentDate = rent.RentDate;
             rentExpirationDate = rent.rentExpirationDate;
@@ -23,6 +23,11 @@ namespace laptop_rental.Domain.Rents.Dtos
             FullPrice = rent.FullPrice;
             Customer = rent.Customer;
             Items = rent.Items;
+        }
+
+        public RentOutput()
+        {
+
         }
     }
 }

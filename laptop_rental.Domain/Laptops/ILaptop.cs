@@ -13,7 +13,7 @@ namespace laptop_rental.Domain.Laptops
 
         decimal DailyLateFee { get; set; }
 
-        abstract ICollection<IRentItem> items { get; set; }
+        ICollection<IRentItem> Items { get; }
 
     }
 }

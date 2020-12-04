@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+using laptop_rental.Domain.Customers.Dtos;
 using laptop_rental.Domain.Rents;
 
 namespace laptop_rental.Domain.Customers
 {
-    public class Customer : BaseEntity, ICustomer
+    public class Customer : BaseEntity
     {
 
         [Required(ErrorMessage = "Obligatory Field")]
@@ -22,9 +22,9 @@ namespace laptop_rental.Domain.Customers
         public Boolean IsLegal { get; set; }
         public string Cpf { get; set; }
         public string Cnpj { get; set; }
-        public virtual ICollection<IRent> Rents { get; set; }
+        public virtual ICollection<Rent> Rents { get; } = new List<Rent>();
 
-        public Customer(ICustomer customerInput)
+        public Customer(CustomerInput customerInput)
         {
             Email = customerInput.Email;
             Password = customerInput.Password;
@@ -32,6 +32,11 @@ namespace laptop_rental.Domain.Customers
             IsLegal = customerInput.IsLegal;
             Cpf = customerInput.Cpf;
             Cnpj = customerInput.Cnpj;
+
+        }
+
+        public Customer()
+        {
 
         }
     }

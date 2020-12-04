@@ -12,6 +12,6 @@ namespace laptop_rental.Domain.Customers
         Boolean IsLegal { get; set; }
         string Cpf { get; set; }
         string Cnpj { get; set; }
-        ICollection<IRent> Rents { get; set; }
+        ICollection<IRent> Rents { get; }
     }
 }

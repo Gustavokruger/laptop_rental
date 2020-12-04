@@ -13,12 +13,12 @@ namespace laptop_rental.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    email = table.Column<string>(type: "text", nullable: false),
-                    password = table.Column<string>(type: "text", nullable: false),
-                    fullName = table.Column<string>(type: "text", nullable: false),
-                    isLegal = table.Column<bool>(type: "boolean", nullable: false),
-                    cpf = table.Column<string>(type: "text", nullable: true),
-                    cnpj = table.Column<string>(type: "text", nullable: true)
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    Password = table.Column<string>(type: "text", nullable: false),
+                    FullName = table.Column<string>(type: "text", nullable: false),
+                    IsLegal = table.Column<bool>(type: "boolean", nullable: false),
+                    Cpf = table.Column<string>(type: "text", nullable: true),
+                    Cnpj = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,12 +31,12 @@ namespace laptop_rental.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    brand = table.Column<string>(type: "text", nullable: false),
-                    model = table.Column<string>(type: "text", nullable: false),
-                    details = table.Column<string>(type: "text", nullable: false),
-                    stockAmount = table.Column<int>(type: "integer", nullable: false),
-                    dailyPrice = table.Column<decimal>(type: "numeric", nullable: false),
-                    dailyLateFee = table.Column<decimal>(type: "numeric", nullable: false)
+                    Brand = table.Column<string>(type: "text", nullable: false),
+                    Model = table.Column<string>(type: "text", nullable: false),
+                    Details = table.Column<string>(type: "text", nullable: false),
+                    StockAmount = table.Column<int>(type: "integer", nullable: false),
+                    DailyPrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    DailyLateFee = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,18 +49,18 @@ namespace laptop_rental.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    rentDate = table.Column<string>(type: "text", nullable: false),
+                    RentDate = table.Column<string>(type: "text", nullable: false),
                     rentExpirationDate = table.Column<string>(type: "text", nullable: false),
-                    status = table.Column<string>(type: "text", nullable: true),
-                    fullPrice = table.Column<decimal>(type: "numeric", nullable: false),
-                    customerId = table.Column<int>(type: "integer", nullable: false)
+                    Status = table.Column<string>(type: "text", nullable: true),
+                    FullPrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    CustomerId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rents_Customers_customerId",
-                        column: x => x.customerId,
+                        name: "FK_Rents_Customers_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -104,9 +104,9 @@ namespace laptop_rental.Migrations
                 column: "rentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rents_customerId",
+                name: "IX_Rents_CustomerId",
                 table: "Rents",
-                column: "customerId");
+                column: "CustomerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

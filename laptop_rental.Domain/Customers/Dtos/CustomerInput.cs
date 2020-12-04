@@ -4,7 +4,7 @@ using laptop_rental.Domain.Rents;
 
 namespace laptop_rental.Domain.Customers.Dtos
 {
-    public class CustomerInput : ICustomer
+    public class CustomerInput
     {
         public string Email { get; set; }
         public string Password { get; set; }
@@ -12,6 +12,6 @@ namespace laptop_rental.Domain.Customers.Dtos
         public Boolean IsLegal { get; set; }
         public string Cpf { get; set; }
         public string Cnpj { get; set; }
-        public ICollection<IRent> Rents { get; set; }
+        public ICollection<Rent> Rents { get; } = new List<Rent>();
     }
 }

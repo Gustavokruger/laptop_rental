@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using laptoprental.Persistence.Contexts;
+using laptop_rental.Infraestructure.Contexts;
 
 namespace laptop_rental.Migrations
 {
@@ -18,31 +18,31 @@ namespace laptop_rental.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Customer", b =>
+            modelBuilder.Entity("laptop_rental.Domain.Customers.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<string>("cnpj")
+                    b.Property<string>("Cnpj")
                         .HasColumnType("text");
 
-                    b.Property<string>("cpf")
+                    b.Property<string>("Cpf")
                         .HasColumnType("text");
 
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("fullName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("isLegal")
+                    b.Property<bool>("IsLegal")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("password")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -51,32 +51,32 @@ namespace laptop_rental.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Laptop", b =>
+            modelBuilder.Entity("laptop_rental.Domain.Laptops.Laptop", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<string>("brand")
+                    b.Property<string>("Brand")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("dailyLateFee")
+                    b.Property<decimal>("DailyLateFee")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("dailyPrice")
+                    b.Property<decimal>("DailyPrice")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("details")
+                    b.Property<string>("Details")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("model")
+                    b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("stockAmount")
+                    b.Property<int>("StockAmount")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -84,38 +84,7 @@ namespace laptop_rental.Migrations
                     b.ToTable("Laptops");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Rent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int>("customerId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("fullPrice")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("rentDate")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("rentExpirationDate")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("status")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("customerId");
-
-                    b.ToTable("Rents");
-                });
-
-            modelBuilder.Entity("laptop_rental.Domain.Models.RentItem", b =>
+            modelBuilder.Entity("laptop_rental.Domain.RentItems.RentItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,27 +109,47 @@ namespace laptop_rental.Migrations
                     b.ToTable("RentItems");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Rent", b =>
+            modelBuilder.Entity("laptop_rental.Domain.Rents.Rent", b =>
                 {
-                    b.HasOne("laptop_rental.Domain.Models.Customer", "customer")
-                        .WithMany("rent")
-                        .HasForeignKey("customerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
 
-                    b.Navigation("customer");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("FullPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("RentDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<string>("rentExpirationDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Rents");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.RentItem", b =>
+            modelBuilder.Entity("laptop_rental.Domain.RentItems.RentItem", b =>
                 {
-                    b.HasOne("laptop_rental.Domain.Models.Laptop", "laptop")
-                        .WithMany("items")
+                    b.HasOne("laptop_rental.Domain.Laptops.Laptop", "laptop")
+                        .WithMany()
                         .HasForeignKey("laptopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("laptop_rental.Domain.Models.Rent", "rent")
-                        .WithMany("items")
+                    b.HasOne("laptop_rental.Domain.Rents.Rent", "rent")
+                        .WithMany("Items")
                         .HasForeignKey("rentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -170,19 +159,25 @@ namespace laptop_rental.Migrations
                     b.Navigation("rent");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Customer", b =>
+            modelBuilder.Entity("laptop_rental.Domain.Rents.Rent", b =>
                 {
-                    b.Navigation("rent");
+                    b.HasOne("laptop_rental.Domain.Customers.Customer", "Customer")
+                        .WithMany("Rents")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Laptop", b =>
+            modelBuilder.Entity("laptop_rental.Domain.Customers.Customer", b =>
                 {
-                    b.Navigation("items");
+                    b.Navigation("Rents");
                 });
 
-            modelBuilder.Entity("laptop_rental.Domain.Models.Rent", b =>
+            modelBuilder.Entity("laptop_rental.Domain.Rents.Rent", b =>
                 {
-                    b.Navigation("items");
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

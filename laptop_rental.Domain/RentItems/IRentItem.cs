@@ -7,8 +7,8 @@ namespace laptop_rental.Domain.RentItems
     {
         int quantity { get; set; }
         int laptopId { get; set; }
-        ILaptop laptop { get; set; }
+        Laptop laptop { get; set; }
         int rentId { get; set; }
-        IRent rent { get; set; }
+        Rent rent { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using laptop_rental.Domain.Laptops.Dtos;
 using laptop_rental.Domain.RentItems;
 
 namespace laptop_rental.Domain.Laptops
@@ -25,9 +26,9 @@ namespace laptop_rental.Domain.Laptops
         [Range(1, int.MaxValue, ErrorMessage = "Price must be bigger than 0")]
         public decimal DailyLateFee { get; set; }
 
-        public virtual ICollection<IRentItem> items { get; set; }
+        public virtual ICollection<IRentItem> Items { get; }
 
-        public Laptop(ILaptop laptop)
+        public Laptop(LaptopInput laptop)
         {
             Brand = laptop.Brand;
             Model = laptop.Model;
@@ -35,8 +36,13 @@ namespace laptop_rental.Domain.Laptops
             StockAmount = laptop.StockAmount;
             DailyPrice = laptop.DailyPrice;
             DailyLateFee = laptop.DailyLateFee;
-            items = laptop.items;
         }
+
+        public Laptop()
+        {
+
+        }
+
 
     }
 }

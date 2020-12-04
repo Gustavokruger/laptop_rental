@@ -31,6 +31,7 @@ namespace laptop_rental.Controllers
 
         [HttpGet]
         [Route("")]
+        [Authorize]
         public ActionResult<List<RentOutput>> list()
         {
 
@@ -38,6 +39,7 @@ namespace laptop_rental.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
+        [Authorize]
         public async Task<ActionResult<RentOutput>> findById(int id)
         {
 
@@ -73,6 +75,7 @@ namespace laptop_rental.Controllers
 
         [HttpPut]
         [Route("refund/{id:int}")]
+        [Authorize]
         public async Task<ActionResult> refund(int id)
         {
             if (ModelState.IsValid)
@@ -87,6 +90,7 @@ namespace laptop_rental.Controllers
 
         [HttpPut]
         [Route("update")]
+        [Authorize]
         public async Task update([FromBody] RentInput rent)
         {
             if (ModelState.IsValid)
@@ -97,6 +101,7 @@ namespace laptop_rental.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
+        [Authorize]
         public async Task delete(int id)
         {
             if (ModelState.IsValid)

@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 using laptop_rental.Infraestructure.Laptops;
 using laptop_rental.Infraestructure.Rents;
+using laptop_rental.laptop_rental.Domain.Rents.Services.Interfaces;
 
 namespace laptop_rental.laptop_rental.Domain.Rents.Services
 {
-    public class RefundRentService
+    public class RefundRentService : IRefundRentService
     {
         private readonly IRentRepository _rentRepository;
         private readonly ILaptopRepository _laptopRepository;

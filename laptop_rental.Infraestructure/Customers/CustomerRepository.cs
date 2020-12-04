@@ -21,9 +21,9 @@ namespace laptop_rental.Infraestructure.Customers
 
         public async Task<Customer> login(CustomerLogin customerLogin)
         {
-            return await _context.Customers
-            .FirstOrDefaultAsync(customer =>
-                customer.Email == customerLogin.email && customer.Password == customerLogin.password);
+            return await Task.FromResult(_context.Customers
+            .Where(customer => customer.Email == customerLogin.email && customer.Password == customerLogin.password)
+            .FirstOrDefault());
         }
 
         public IQueryable<Customer> list()

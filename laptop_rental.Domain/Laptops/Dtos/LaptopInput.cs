@@ -3,7 +3,7 @@ using laptop_rental.Domain.RentItems;
 
 namespace laptop_rental.Domain.Laptops.Dtos
 {
-    public class LaptopInput : ILaptop
+    public class LaptopInput
     {
         public string Brand { get; set; }
         public string Model { get; set; }
@@ -11,7 +11,6 @@ namespace laptop_rental.Domain.Laptops.Dtos
         public int StockAmount { get; set; }
         public decimal DailyPrice { get; set; }
         public decimal DailyLateFee { get; set; }
-        public virtual ICollection<IRentItem> items { get; set; }
 
     }
 }

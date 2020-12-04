@@ -4,12 +4,12 @@ using laptop_rental.Domain.Laptops;
 
 namespace laptop_rental.Domain.RentItems
 {
-    public class RentItem : BaseEntity, IRentItem
+    public class RentItem : BaseEntity
     {
         public int quantity { get; set; }
         public int laptopId { get; set; }
-        public ILaptop laptop { get; set; }
+        public Laptop laptop { get; set; }
         public int rentId { get; set; }
-        public IRent rent { get; set; }
+        public Rent rent { get; set; }
     }
 }

@@ -5,11 +5,12 @@ using laptop_rental.Domain.Rents;
 using laptop_rental.Domain.Rents.Dtos;
 using laptop_rental.Infraestructure.Laptops;
 using laptop_rental.Infraestructure.Rents;
+using laptop_rental.laptop_rental.Domain.Rents.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace laptop_rental.laptop_rental.Domain.Rents.Services
 {
-    public class CreateRentService
+    public class CreateRentService : ICreateRentService
     {
         private readonly IRentRepository _rentRepository;
         private readonly ILaptopRepository _laptopRepository;
@@ -29,7 +30,7 @@ namespace laptop_rental.laptop_rental.Domain.Rents.Services
                 if (laptop.StockAmount >= item.quantity)
                 {
                     laptop.StockAmount -= 1;
-                    await _laptopRepository.update(new Laptop(laptop));
+                    await _laptopRepository.update(laptop);
                 }
                 else
                 {
@@ -39,7 +40,7 @@ namespace laptop_rental.laptop_rental.Domain.Rents.Services
             }
             rent.Status = "efetuado";
             await _rentRepository.addAsync(new Rent(rent));
-            return new RentOutput(rent);
+            return new RentOutput(new Rent(rent));
         }
 
     }

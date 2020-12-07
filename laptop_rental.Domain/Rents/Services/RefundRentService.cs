@@ -24,7 +24,7 @@ namespace laptop_rental.laptop_rental.Domain.Rents.Services
                 foreach (var item in rent.Items)
                 {
                     var laptop = (await _laptopRepository.findByIdAsync(item.laptopId)).Value;
-                    laptop.StockAmount += 1;
+                    laptop.StockAmount += item.quantity;
                     await _laptopRepository.update(laptop);
                 }
 

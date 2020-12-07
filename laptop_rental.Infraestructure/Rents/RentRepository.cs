@@ -26,7 +26,7 @@ namespace laptop_rental.Infraestructure.Rents
         }
         public async Task addAsync(Rent rent)
         {
-
+            rent.Items.ToList().ForEach(item => _context.Laptops.Attach(item.laptop));
             await _context.Rents.AddAsync(rent);
             await _context.SaveChangesAsync();
         }

@@ -14,7 +14,7 @@ namespace laptop_rental.Application.Rents.Services.Interfaces
         Task<ActionResult<RentOutput>> create(RentInput rent);
         Task update(RentInput rent);
         Task remove(int id);
-        SimulateRent simulate(SimulateRent rent);
+        Task<SimulateRent> simulate(SimulateRent rent);
         Task refund(int id);
     }
 }

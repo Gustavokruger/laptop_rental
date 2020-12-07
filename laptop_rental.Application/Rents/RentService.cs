@@ -61,9 +61,9 @@ namespace laptop_rental.Application.Rents.Services
             await _rentRepository.remove(id);
 
         }
-        public SimulateRent simulate(SimulateRent rent)
+        public async Task<SimulateRent> simulate(SimulateRent rent)
         {
-            return _simulateRentService.simulate(rent);
+            return await _simulateRentService.simulate(rent);
         }
 
         public async Task refund(int id)

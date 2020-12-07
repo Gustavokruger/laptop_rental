@@ -26,6 +26,7 @@ namespace laptop_rental.Domain.Customers
 
         public Customer(CustomerInput customerInput)
         {
+            Id = customerInput.Id;
             Email = customerInput.Email;
             Password = customerInput.Password;
             FullName = customerInput.FullName;

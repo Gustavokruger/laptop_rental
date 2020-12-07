@@ -5,6 +5,6 @@ namespace laptop_rental.laptop_rental.Domain.Rents.Services.Interfaces
 {
     public interface ISimulateRentService
     {
-        SimulateRent simulate(SimulateRent rent);
+        Task<SimulateRent> simulate(SimulateRent rent);
     }
 }

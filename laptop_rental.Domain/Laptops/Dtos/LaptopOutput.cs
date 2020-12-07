@@ -5,6 +5,7 @@ namespace laptop_rental.Domain.Laptops.Dtos
 {
     public class LaptopOutput
     {
+        public int Id { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string Details { get; set; }
@@ -14,6 +15,7 @@ namespace laptop_rental.Domain.Laptops.Dtos
 
         public LaptopOutput(Laptop laptop)
         {
+            Id = laptop.Id;
             Brand = laptop.Brand;
             Model = laptop.Model;
             Details = laptop.Details;

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using laptop_rental.Domain.Customers;
 using laptop_rental.Domain.RentItems;
 using laptop_rental.Domain.Rents.Dtos;
+using laptop_rental.laptop_rental.Domain.RentItems.Dtos;
 
 namespace laptop_rental.Domain.Rents
 {
@@ -22,13 +24,14 @@ namespace laptop_rental.Domain.Rents
 
         public Rent(RentInput rentInput)
         {
+            Id = rentInput.Id;
             RentDate = rentInput.RentDate;
             rentExpirationDate = rentInput.rentExpirationDate;
             Status = rentInput.Status;
             FullPrice = rentInput.FullPrice;
             CustomerId = rentInput.CustomerId;
             Customer = rentInput.Customer;
-            Items = rentInput.Items;
+            Items = new List<RentItem>(rentInput.Items);
         }
 
         public Rent()

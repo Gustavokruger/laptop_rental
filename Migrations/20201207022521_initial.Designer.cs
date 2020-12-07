@@ -9,7 +9,7 @@ using laptop_rental.Infraestructure.Contexts;
 namespace laptop_rental.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201204104547_initial")]
+    [Migration("20201207022521_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,7 +145,7 @@ namespace laptop_rental.Migrations
             modelBuilder.Entity("laptop_rental.Domain.RentItems.RentItem", b =>
                 {
                     b.HasOne("laptop_rental.Domain.Laptops.Laptop", "laptop")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("laptopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -175,6 +175,11 @@ namespace laptop_rental.Migrations
             modelBuilder.Entity("laptop_rental.Domain.Customers.Customer", b =>
                 {
                     b.Navigation("Rents");
+                });
+
+            modelBuilder.Entity("laptop_rental.Domain.Laptops.Laptop", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("laptop_rental.Domain.Rents.Rent", b =>

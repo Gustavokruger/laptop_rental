@@ -12,6 +12,8 @@ using laptop_rental.Infraestructure.Contexts;
 using laptop_rental.Infraestructure.Customers;
 using laptop_rental.Infraestructure.Laptops;
 using laptop_rental.Infraestructure.Rents;
+using laptop_rental.laptop_rental.Domain.RentItems.Services;
+using laptop_rental.laptop_rental.Domain.RentItems.Services.Interfaces;
 using laptop_rental.laptop_rental.Domain.Rents.Services;
 using laptop_rental.laptop_rental.Domain.Rents.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -68,6 +70,7 @@ namespace laptop_rental
             services.AddTransient<IRefundRentService, RefundRentService>();
             services.AddTransient<ILaptopService, LaptopService>();
             services.AddTransient<IRentService, RentService>();
+            services.AddTransient<IValidateItemStock, ValidateItemStock>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IGenerateTokenService, GenerateTokenService>();
             services.AddMvc();

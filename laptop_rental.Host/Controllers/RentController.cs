@@ -50,11 +50,16 @@ namespace laptop_rental.Controllers
         [HttpGet]
         [Route("simulate")]
         [Authorize]
-        public ActionResult<SimulateRent> simulate([FromBody] SimulateRent rent)
+        public async Task<ActionResult<SimulateRent>> simulate([FromBody] SimulateRent rent)
         {
             if (ModelState.IsValid)
             {
-                return _rentService.simulate(rent);
+                if (await _rentService.simulate(rent) != null)
+                {
+                    return rent;
+                }
+                return this.StatusCode(500);
+
             }
             return this.StatusCode(500);
         }

@@ -5,7 +5,7 @@ using laptop_rental.Domain.RentItems;
 
 namespace laptop_rental.Domain.Laptops
 {
-    public class Laptop : BaseEntity, ILaptop
+    public class Laptop : BaseEntity
     {
 
         [Required(ErrorMessage = "Obligatory Field")]
@@ -26,10 +26,11 @@ namespace laptop_rental.Domain.Laptops
         [Range(1, int.MaxValue, ErrorMessage = "Price must be bigger than 0")]
         public decimal DailyLateFee { get; set; }
 
-        public virtual ICollection<IRentItem> Items { get; }
+        public virtual ICollection<RentItem> Items { get; }
 
         public Laptop(LaptopInput laptop)
         {
+            Id = laptop.Id;
             Brand = laptop.Brand;
             Model = laptop.Model;
             Details = laptop.Details;
